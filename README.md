@@ -1,6 +1,6 @@
 # hackcurio_theme
 
-View the live site to see the theme's features in action: https://hackcur.io.
+View the live site to see the theme in action: https://hackcur.io.
 
 - [Main Features](#main-features)
   * [Media Metadata](#media-metadata)
