@@ -1,4 +1,4 @@
-# HackCurio Theme for Wordpress
+# HackCurio Theme
 
 View the live site to see the theme in action: https://hackcur.io.
 
