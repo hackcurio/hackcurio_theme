@@ -2,7 +2,17 @@
 
 View the live site to see the theme's features in action: https://hackcur.io.
 
-## Main Functions
+- [Main Features](#main-features)
+  * [Media Metadata](#media-metadata)
+  * [Other Highlights in `functions.php`](#other-highlights-in--functionsphp-)
+  * [Styling](#styling)
+  * [OEmbed Plugin](#oembed-plugin)
+- [Usage](#usage)
+  * [Initial Setup](#initial-setup)
+  * [Vimeo](#vimeo)
+  * [Note on Image Assets](#note-on-image-assets)
+
+## Main Features
 
 ### Media Metadata
 One core problem we had to solve was developing a method for storing custom metadata on externally hosted videos. First, we use a modified plugin to create a media library object from an external URL (see “Oembed Plugin” below or view on [GH link]). Then, at the beginning of `functions.php`, we define the specific metadata fields that we want (and a function to save their inputs).
@@ -39,7 +49,7 @@ This theme is designed to work with the [OEmbed in Library plugin](https://githu
 After a standard Wordpress install, download the repository into `wp-content/themes`. Then download the [OEmbed in Library plugin](https://github.com/hackcurio/oembed_in_library) into `wp-content/plugins`.
 
 ### Vimeo
-We use Vimeo for The [Vimeo PHP library](https://github.com/vimeo/vimeo.php) is included, and should be kept updated with future Wordpress upgrades. You 
+We use Vimeo for our external video hosting. The [Vimeo PHP library](https://github.com/vimeo/vimeo.php) is included, and should be kept updated with future Wordpress upgrades. You will need to set values for `VIMEO_CLIENT_ID`, `VIMEO_CLIENT_SECRET`, and `VIMEO_ACCESS_TOKEN` in `wp-config.php`. Other hosts can be configured; there is partial (vestigial) support for YouTube links.
 
 ### Note on Image Assets
 You will need to upload your own logo/image assets if you are making use of those features. These assets are typically called by their name in the media library (e.g., “Twitter Logo” called in `footer.php`). If you are using Twitter Cards [link], most card images will be generated automatically; however, you may want to add a screenshot of your homepage to use when tweeting out links to the homepage (by default, `index.php` looks for a media item named “Homepage Screenshot”).
