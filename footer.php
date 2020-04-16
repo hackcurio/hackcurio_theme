@@ -9,4 +9,7 @@
 	<a href=<?php echo get_home_url() . '/feed' ?>>
 		<img class="footer-icon" src=<?php echo get_attachment_url_by_title("RSS Icon"); ?>>
 	</a>
+	<a href="https://github.com/hackcurio">
+		<img class="footer-icon" src=<?php echo get_attachment_url_by_title("GitHub Logo"); ?>>
+	</a>
 </div>
