@@ -15,7 +15,7 @@ View the live site to see the theme in action: https://hackcur.io.
 ## Main Features
 
 ### Media Metadata
-One core problem we had to solve was developing a method for storing custom metadata on externally hosted videos. First, we use a customized plugin to create a media library object from an external URL (see the [OEmbed Plugin](#oembed-plugin) section below and find the plugin itself [here](https://github.com/hackcurio/oembed_in_library)). Then, at the beginning of `functions.php`, we define the specific metadata fields that we want (and a function to save their inputs).
+One core problem we had to solve was developing a method for storing custom metadata on externally hosted videos. First, we use a [customized plugin](#oembed-plugin) to create a media library object from an external URL. Then, at the beginning of `functions.php`, we define the specific metadata fields that we want (and a function to save their inputs).
 
 Also in `functions.php`, you will find metadata definitions for entry and category pages. 
 
