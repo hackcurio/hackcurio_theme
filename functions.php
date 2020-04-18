@@ -219,18 +219,51 @@ function save_category_metadata( $term_id ) {
 add_filter( 'edited_category', 'save_category_metadata', 10, 2 );
 add_filter( 'created_category', 'save_category_metadata', 10, 2 );
 
-function filter_posts_by_author() {
-	$params = array(
-		'name' => 'author',
-		'show_option_all' => 'All authors'
-	);
- 
-	if ( isset($_GET['post']) )
-		$params['selected'] = $_GET['user'];
- 
-	wp_dropdown_users( $params );
+function admin_filter_author(){
+	remove_filter('parse_query', 'filter_posts_by_author');
+    $posts = get_posts(array('numberposts' => -1));
+    foreach ($posts as $post) {
+    	$post->author_last_name = get_post_meta($post->ID, 'author_last_name', true);
+		$post->parsed_author = parse_author($post, $the_list=true);
+    };
+	
+	function cmp($a, $b) {
+		return strcasecmp($a->author_last_name, $b->author_last_name);
+	}
+    usort($posts, 'cmp');
+
+    $keys = array_column($posts, 'author_last_name');
+    $labels = array_column($posts, 'parsed_author');
+    $arr = array_unique(array_combine($keys, $labels));
+    ?>
+    <select name="ADMIN_FILTER_FIELD_VALUE">
+    <option value=""><?php _e('All authors'); ?></option>
+    <?php
+        $current_v = isset($_GET['ADMIN_FILTER_FIELD_VALUE'])? $_GET['ADMIN_FILTER_FIELD_VALUE']:'';
+        foreach ($arr as $key => $label) {
+            printf
+                (
+                    '<option value="%s"%s>%s</option>',
+                    $key,
+                    $key == $current_v? ' selected="selected"':'',
+                    $label
+                );
+            }
+    ?>
+    </select>
+    <?php
 }
-add_action('restrict_manage_posts', 'filter_posts_by_author');
+add_action('restrict_manage_posts', 'admin_filter_author');
+
+function filter_posts_by_author( $query ){
+    global $pagenow;
+    if ( is_admin() && $pagenow=='edit.php' && isset($_GET['ADMIN_FILTER_FIELD_VALUE']) && $_GET['ADMIN_FILTER_FIELD_VALUE'] != '') {
+        $query->query_vars['meta_key'] = 'author_last_name';
+        $query->query_vars['meta_value'] = $_GET['ADMIN_FILTER_FIELD_VALUE'];
+    }
+}
+add_filter( 'parse_query', 'filter_posts_by_author' );
+
 
 // 2. Front-end
 
