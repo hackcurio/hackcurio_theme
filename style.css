@@ -403,9 +403,14 @@ a:hover {
 
 .entry-tags span {
 	background-color: #C35064;
-	padding: 2px 5px;
+	padding: 2px 7px;
 	color: white;
 	white-space: nowrap;
+}
+
+.the-list > .entry-tags span { 
+	font-size: 14px;
+	font-family: 'Space Mono';
 }
 
 .content-more {
