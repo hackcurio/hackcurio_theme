@@ -1,6 +1,6 @@
 jQuery.noConflict()
 
-// uses the 'published_posts' var set using wp_localize_script in functions.php
+// uses the 'published_posts' and 'all_tags' vars set using wp_localize_script in functions.php
 
 jQuery(document).ready(function() {
 
@@ -13,7 +13,9 @@ jQuery(document).ready(function() {
 		    var option = jQuery(this);
 		    option.addClass('current-option');
 
-		    if (this.text == 'By Date') {
+		    if (this.text == 'View All Tags') {
+		    	display(tags, show_count=false);
+		    } else if (this.text == 'By Date') {
 		    	display(byDate);
 		    } else {
 		    	display(byAuthor);
@@ -22,11 +24,15 @@ jQuery(document).ready(function() {
     })(jQuery);
 });
 
-function display(by) {
+function display(by, show_count=true) {
 	jQuery('.the-list').remove();
 	jQuery('.the-list-container').append(
 		`<div class="the-list">${by()}</div>`
 	);
+	
+	if (show_count) {
+		jQuery('.the-list').append(`<br><br>Total number of entries: ${published_posts.length}`);
+	};
 }
 
 function byAuthor() {
@@ -119,4 +125,14 @@ function formatDate(post, showDay=true) {
 
 function distinct(value, index, self) { 
     return self.indexOf(value) === index;
+}
+
+function tags() {
+	var result = '<p class="entry-tags category">';
+	all_tags.forEach(tag => {
+		result += `<span><a href="/tag/${tag['name']}">${tag['name']}</a></span>   `;
+	});
+	
+	result += '</p>';
+	return result;
 }
