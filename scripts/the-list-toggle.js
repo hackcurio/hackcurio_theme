@@ -13,7 +13,7 @@ jQuery(document).ready(function() {
 		    var option = jQuery(this);
 		    option.addClass('current-option');
 
-		    if (this.text == 'View All Tags') {
+		    if (this.text == 'By Tag') {
 		    	display(tags, show_count=false);
 		    } else if (this.text == 'By Date') {
 		    	display(byDate);

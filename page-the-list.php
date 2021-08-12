@@ -9,7 +9,7 @@
 	?>
 	<br><br><br>
 	<p class="the-list-toggle">
-		<a class="current-option">By Date</a> | <a>By Author</a> | <a>View All Tags</a>
+		<a class="current-option">By Date</a> | <a>By Author</a> | <a>By Tag</a>
 	</p>
 	<div class="the-list-container"></div>
 </div>
